@@ -7,13 +7,15 @@
 # Pull base image.
 FROM registry.banno-internal.com/java
 
+ENV ELASTICSEARCH_VERSION 1.4.2
+
 # Install ElasticSearch.
 RUN \
   cd /tmp && \
-  wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.tar.gz && \
-  tar xvzf elasticsearch-1.4.2.tar.gz && \
-  rm -f elasticsearch-1.4.2.tar.gz && \
-  mv /tmp/elasticsearch-1.4.2 /elasticsearch
+  wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
+  tar xvzf elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
+  rm -f elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
+  mv /tmp/elasticsearch-$ELASTICSEARCH_VERSION /elasticsearch
 
 # Define mountable directories.
 VOLUME ["/data"]
